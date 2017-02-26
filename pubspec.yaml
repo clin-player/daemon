@@ -1,2 +1,4 @@
 name: clinplayerd
 version: 0.0.1
+dependencies:
+  eventable: 5.2.1
