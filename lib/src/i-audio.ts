@@ -1,6 +1,6 @@
 // TODO: import EventEmitter
 
-interface IAudio extends EventEmitter {
+interface IAudio extends IEventEmitter {
 	play(url: string): void
 	pause(): void
 	resume(): void
@@ -20,31 +20,36 @@ interface IAudio extends EventEmitter {
 	toggleMute(): boolean
 
 	getState(): State
+
+	on(event: IAudioEvent, callback: (event: IAudioEvent) => void)
+	off(event: IAudioEvent, callback: (event: IAudioEvent) => void)
 }
 
 enum State {
 	BUFFERING,
-	INITED,
 	PAUSED,
 	PLAYING,
-	STOPPED,
-	UNINITED
+	STOPPED
 }
 
-interface IAudioEvent {}
+interface IAudioEvent extends IEvent {}
 
-interface IAudioEventPositionChange extends IAudioEvent {
+interface IPositionChanged extends IAudioEvent {
 	position: number
 }
 
-interface IAudioEventPlayStateChange extends IAudioEvent {
+interface IStateChanged extends IAudioEvent {
 	state: State
 }
 
-interface IAudioEventPlaybackRateChange extends IAudioEvent {
+interface IPlaybackRateChanged extends IAudioEvent {
 	rate: number
 }
 
-interface IAudioEventVolumeChange extends IAudioEvent {
+interface IVolumeChanged extends IAudioEvent {
 	volume: number
+}
+
+interface IMetadataChanged extends IAudioEvent {
+	duration: number
 }
