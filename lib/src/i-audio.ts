@@ -29,7 +29,8 @@ enum State {
 	BUFFERING,
 	PAUSED,
 	PLAYING,
-	STOPPED
+	STOPPED,
+	ERROR
 }
 
 interface IAudioEvent extends IEvent {}
@@ -39,7 +40,8 @@ interface IPositionChanged extends IAudioEvent {
 }
 
 interface IStateChanged extends IAudioEvent {
-	state: State
+	state: State,
+	error: string
 }
 
 interface IPlaybackRateChanged extends IAudioEvent {
